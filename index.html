@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio WebMapping | Tecnologías de la Información Geográfica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js" defer></script>
+</head>
+<body>
+<!-- NAVEGACIÓN -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-globe-americas"></i>
+            <span>WebMapping Portfolio</span>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#practicas"><i class="fas fa-map"></i> Prácticas</a></li>
+            <li><a href="#sobre"><i class="fas fa-info-circle"></i> Sobre</a></li>
+            <!-- TODO: Añadir más enlaces según necesites -->
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="inicio">
+    <div class="hero-content">
+        <h1>Portafolio Digital WebMapping</h1>
+        <p class="subtitle">Tecnologías de la Información Geográfica</p>
+        <p>
+            Bienvenido a mi portafolio académico donde presento los resultados de las prácticas
+            realizadas durante el curso, aplicando herramientas GIS, análisis espacial,
+            cartografía digital y visualización de datos geoespaciales.
+        </p>
+        <div class="cta-buttons">
+            <a href="#practicas" class="btn btn-primary">
+                <i class="fas fa-map-marked-alt"></i> Ver Prácticas
+            </a>
+            <a href="#sobre" class="btn btn-secondary">
+                <i class="fas fa-info-circle"></i> Más Información
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE EL PORTAFOLIO -->
+<section class="about-section" id="sobre">
+    <div class="container">
+        <h2 class="section-title">Sobre este Portafolio</h2>
+        <p class="section-subtitle">
+            Recopilación profesional de evidencias académicas y proyectos de WebMapping
+        </p>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Formación Académica</h3>
+                <p>
+                    Este portafolio documenta el aprendizaje y desarrollo de competencias
+                    en Tecnologías de la Información Geográfica, incluyendo análisis espacial,
+                    cartografía y visualización de datos.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <i class="fas fa-tools"></i>
+                <h3>Herramientas Utilizadas</h3>
+                <p>
+                    Aplicación práctica de software GIS profesional, programación geoespacial,
+                    bases de datos espaciales, teledetección y tecnologías web para mapas interactivos.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <i class="fas fa-project-diagram"></i>
+                <h3>Metodología</h3>
+                <p>
+                    Cada práctica sigue un proceso estructurado: análisis de requisitos,
+                    procesamiento de datos, análisis espacial, visualización y documentación
+                    de resultados con rigor académico.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRÁCTICAS -->
+<section class="practicas-section" id="practicas">
+    <div class="container">
+        <h2 class="section-title">Prácticas Realizadas</h2>
+        <p class="section-subtitle">
+            Exploración de proyectos GIS y análisis geoespacial
+        </p>
+
+        <div class="practicas-grid">
+            <!-- PRÁCTICA 1 -->
+            <div class="practica-card" onclick="window.location.href='practica1.html'">
+                <div class="practica-header">
+                    <div class="practica-number">01</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Introducción a SIG</h3>
+                    <p>Primeros pasos en Sistemas de Información Geográfica. Captura de pantalla y familiarización con el entorno de trabajo.</p>
+                    <div class="practica-tags">
+                        <span class="tag">PNG/JPG</span>
+                        <span class="tag">Captura</span>
+                    </div>
+                    <a href="practica1.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRÁCTICA 3 -->
+            <div class="practica-card" onclick="window.location.href='practica3.html'">
+                <div class="practica-header">
+                    <div class="practica-number">03</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Análisis Climático</h3>
+                    <p>Cartografía de temperaturas y precipitaciones. Análisis espacial de variables climáticas.</p>
+                    <div class="practica-tags">
+                        <span class="tag">PDF</span>
+                        <span class="tag">Mapas</span>
+                    </div>
+                    <a href="practica3.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRÁCTICA 4 -->
+            <div class="practica-card" onclick="window.location.href='practica4.html'">
+                <div class="practica-header">
+                    <div class="practica-number">04</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Zonas Válidas - Análisis Vectorial</h3>
+                    <p>Generación de capa shapefile de zonas válidas mediante análisis espacial y criterios específicos.</p>
+                    <div class="practica-tags">
+                        <span class="tag">WebMap</span>
+                        <span class="tag">SHP</span>
+                        <span class="tag">Leaflet</span>
+                    </div>
+                    <a href="practica4.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRÁCTICA 5 -->
+            <div class="practica-card" onclick="window.location.href='practica5.html'">
+                <div class="practica-header">
+                    <div class="practica-number">05</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Análisis de Severidad - Raster</h3>
+                    <p>Procesamiento y análisis de datos raster. Cálculo de índice de severidad mediante álgebra de mapas.</p>
+                    <div class="practica-tags">
+                        <span class="tag">WebMap</span>
+                        <span class="tag">TIFF</span>
+                        <span class="tag">Raster</span>
+                    </div>
+                    <a href="practica5.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRÁCTICA 7 -->
+            <div class="practica-card" onclick="window.location.href='practica7.html'">
+                <div class="practica-header">
+                    <div class="practica-number">07</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Análisis Estadístico y Rendimiento</h3>
+                    <p>Procesamiento de datos tabulares, análisis estadístico y visualización gráfica de resultados.</p>
+                    <div class="practica-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">JPG</span>
+                        <span class="tag">Gráficos</span>
+                    </div>
+                    <a href="practica7.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRÁCTICA 8 -->
+            <div class="practica-card" onclick="window.location.href='practica8.html'">
+                <div class="practica-header">
+                    <div class="practica-number">08</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Contenedores y Accidentes Madrid</h3>
+                    <p>Visualización de datos urbanos mediante mapas web interactivos. Análisis de distribución espacial.</p>
+                    <div class="practica-tags">
+                        <span class="tag">WebMap</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">Urbano</span>
+                    </div>
+                    <a href="practica8.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRÁCTICA 9 -->
+            <div class="practica-card" onclick="window.location.href='practica9.html'">
+                <div class="practica-header">
+                    <div class="practica-number">09</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Índices SAVI y EVI - Teledetección</h3>
+                    <p>Cálculo de índices de vegetación mediante imágenes satelitales. Análisis de coberturas vegetales.</p>
+                    <div class="practica-tags">
+                        <span class="tag">WebMap</span>
+                        <span class="tag">GEE</span>
+                        <span class="tag">Índices</span>
+                    </div>
+                    <a href="practica9.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRÁCTICA 10 -->
+            <div class="practica-card" onclick="window.location.href='practica10.html'">
+                <div class="practica-header">
+                    <div class="practica-number">10</div>
+                </div>
+                <div class="practica-body">
+                    <h3>Análisis Temporal - Series</h3>
+                    <p>Análisis de series temporales mediante índices espectrales. Visualización de cambios en el tiempo.</p>
+                    <div class="practica-tags">
+                        <span class="tag">WebMap</span>
+                        <span class="tag">GIF</span>
+                        <span class="tag">Temporal</span>
+                    </div>
+                    <a href="practica10.html" class="practica-link">
+                        Ver detalles <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-info">
+            <h3>Portafolio WebMapping</h3>
+            <p>Tecnologías de la Información Geográfica - Curso 2024/2025</p>
+            <!-- TODO: Añade tu información personal aquí -->
+            <p style="margin-top: 1rem; opacity: 0.8;">
+                <i class="fas fa-user"></i> [Tu Nombre] |
+                <i class="fas fa-envelope"></i> [Tu Email] |
+                <i class="fas fa-university"></i> [Universidad]
+            </p>
+        </div>
+        <div class="social-links">
+            <!-- TODO: Añade tus enlaces sociales o GitHub -->
+            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.6;">
+            © 2024 - Todos los derechos reservados
+        </p>
+    </div>
+</footer>
+</body>
+</html>

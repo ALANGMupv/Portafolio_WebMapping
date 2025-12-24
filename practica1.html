@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Práctica 1 - Introducción a SIG | Portafolio WebMapping</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/practica1.css">
+  <script src="js/practica1.js" defer></script>
+</head>
+<body>
+<!-- NAVEGACIÓN -->
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">
+      <i class="fas fa-globe-americas"></i>
+      <span>WebMapping Portfolio</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+      <li><a href="index.html#practicas"><i class="fas fa-map"></i> Prácticas</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HEADER DE PRÁCTICA -->
+<header class="practice-header">
+  <div class="practice-header-content">
+    <div class="practice-number">
+      <i class="fas fa-layer-group"></i>
+      PRÁCTICA 01
+    </div>
+    <h1 class="practice-title">Introducción a Sistemas de Información Geográfica</h1>
+    <p class="practice-subtitle">
+      Primeros pasos en el entorno GIS: familiarización con la interfaz y herramientas básicas
+    </p>
+    <div class="practice-meta">
+      <div class="meta-item">
+        <i class="fas fa-file-image"></i>
+        <span>Formato: PNG / JPG</span>
+      </div>
+      <div class="meta-item">
+        <i class="fas fa-tag"></i>
+        <span>Tipo: Captura de Pantalla</span>
+      </div>
+      <div class="meta-item">
+        <i class="fas fa-tools"></i>
+        <span>Herramientas: Software GIS</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="main-content">
+  <!-- DESCRIPCIÓN Y OBJETIVOS -->
+  <section class="section">
+    <h2 class="section-title">
+      <i class="fas fa-bullseye"></i>
+      Objetivos de la Práctica
+    </h2>
+    <div class="section-content">
+      <p>
+        Esta primera práctica tiene como finalidad introducir al estudiante en el uso de
+        <strong>Sistemas de Información Geográfica (SIG)</strong>, familiarizándose con la interfaz
+        gráfica del software, sus herramientas principales y la estructura de trabajo con datos espaciales.
+      </p>
+      <p>Los objetivos específicos incluyen:</p>
+      <ul>
+        <li>Reconocer y comprender la interfaz del software GIS utilizado en la asignatura</li>
+        <li>Identificar los paneles principales: tabla de contenidos, mapa, y propiedades</li>
+        <li>Familiarizarse con las herramientas de navegación básicas (zoom, pan, identificar)</li>
+        <li>Realizar una captura de pantalla profesional del entorno de trabajo</li>
+        <li>Documentar adecuadamente el proceso de trabajo inicial</li>
+      </ul>
+    </div>
+
+    <div class="tech-info">
+      <h4><i class="fas fa-info-circle"></i> Información Técnica</h4>
+      <ul>
+        <li><strong>Software empleado:</strong> QGIS / ArcGIS / gvSIG (según corresponda)</li>
+        <li><strong>Formato de entrega:</strong> PNG o JPG (alta resolución)</li>
+        <li><strong>Requisitos:</strong> Captura que muestre claramente la interfaz completa</li>
+        <li><strong>Peso máximo:</strong> Recomendado menos de 5 MB por imagen</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- QUÉ SE PIDE -->
+  <section class="section">
+    <h2 class="section-title">
+      <i class="fas fa-clipboard-check"></i>
+      Requisitos Específicos
+    </h2>
+    <div class="section-content">
+      <p>
+        Según las especificaciones de la práctica, se requiere entregar una <strong>captura de pantalla</strong>
+        que documente el primer contacto con el software GIS. Esta captura debe mostrar:
+      </p>
+      <ul>
+        <li>La interfaz completa del software en funcionamiento</li>
+        <li>Los paneles de trabajo correctamente organizados</li>
+        <li>Una vista del mapa con datos cargados (si aplica)</li>
+        <li>Resolución adecuada para su visualización en el portafolio digital</li>
+      </ul>
+      <p>
+        La imagen debe guardarse en formato <strong>PNG o JPG</strong> y estar lista para su
+        integración en este portafolio web.
+      </p>
+    </div>
+
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="openPdfModal()">
+        <i class="fas fa-file-pdf"></i>
+        Ver Enunciado PDF
+      </button>
+      <a href="#" class="btn btn-success" download>
+        <i class="fas fa-download"></i>
+        Descargar Resultados
+      </a>
+      <button class="btn btn-secondary" onclick="document.getElementById('imageModal').classList.add('active')">
+        <i class="fas fa-expand"></i>
+        Ver en Pantalla Completa
+      </button>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section">
+    <h2 class="section-title">
+      <i class="fas fa-images"></i>
+      Resultados Obtenidos
+    </h2>
+    <div class="section-content">
+      <p>
+        A continuación se presentan las capturas de pantalla realizadas durante la práctica.
+        Estas imágenes documentan el proceso de familiarización con el entorno GIS.
+      </p>
+    </div>
+
+    <!-- GALERÍA DE IMÁGENES -->
+    <div class="results-gallery">
+      <!-- RESULTADO 1 -->
+      <div class="result-item" onclick="openImageViewer('image1')">
+        <div class="result-image">
+          <i class="fas fa-desktop"></i>
+          <!-- TODO: Reemplazar con tu imagen real -->
+          <!-- <img src="assets/images/practica1/captura_principal.png" alt="Captura Principal GIS"> -->
+        </div>
+        <div class="result-info">
+          <h4>Interfaz Principal GIS</h4>
+          <p>Vista general del entorno de trabajo con todos los paneles activos</p>
+          <span class="result-format">PNG</span>
+        </div>
+      </div>
+
+      <!-- RESULTADO 2 (Opcional) -->
+      <div class="result-item" onclick="openImageViewer('image2')">
+        <div class="result-image">
+          <i class="fas fa-map"></i>
+          <!-- TODO: Añadir más capturas si las tienes -->
+          <!-- <img src="assets/images/practica1/detalle_herramientas.png" alt="Detalle Herramientas"> -->
+        </div>
+        <div class="result-info">
+          <h4>Detalle de Herramientas</h4>
+          <p>Zoom a las barras de herramientas principales del software</p>
+          <span class="result-format">JPG</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANÁLISIS Y CONCLUSIONES -->
+  <section class="section">
+    <h2 class="section-title">
+      <i class="fas fa-lightbulb"></i>
+      Análisis y Aprendizajes
+    </h2>
+    <div class="section-content">
+      <p>
+        Esta práctica inicial ha permitido establecer una <strong>base sólida</strong> para el trabajo
+        posterior con herramientas GIS. Los principales aprendizajes incluyen:
+      </p>
+      <ul>
+        <li><strong>Comprensión del entorno:</strong> Identificación de los componentes principales de la interfaz</li>
+        <li><strong>Navegación básica:</strong> Uso de herramientas de zoom, desplazamiento e identificación</li>
+        <li><strong>Organización del espacio de trabajo:</strong> Configuración óptima de paneles y vistas</li>
+        <li><strong>Gestión de proyectos:</strong> Creación y guardado del primer proyecto GIS</li>
+      </ul>
+      <p>
+        Esta práctica sienta las bases para las siguientes actividades del curso, donde se profundizará
+        en análisis espacial, geoprocesamiento y cartografía digital avanzada.
+      </p>
+    </div>
+  </section>
+
+  <!-- NAVEGACIÓN ENTRE PRÁCTICAS -->
+  <div class="practice-navigation">
+    <a href="index.html" class="nav-practice">
+      <i class="fas fa-arrow-left"></i>
+      <div class="nav-practice-info">
+        <h5>Volver a</h5>
+        <p>Inicio del Portafolio</p>
+      </div>
+    </a>
+    <a href="practica3.html" class="nav-practice">
+      <div class="nav-practice-info" style="text-align: right;">
+        <h5>Siguiente Práctica</h5>
+        <p>Práctica 03 - Análisis Climático</p>
+      </div>
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</main>
+
+<!-- MODAL PARA PDF -->
+<div id="pdfModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3><i class="fas fa-file-pdf"></i> Enunciado de la Práctica</h3>
+      <button class="modal-close" onclick="closePdfModal()">&times;</button>
+    </div>
+    <!-- TODO: Reemplazar con la ruta de tu PDF -->
+    <iframe
+            class="pdf-viewer"
+            src="assets/pdfs/practica1_enunciado.pdf"
+            title="Enunciado Práctica 1">
+    </iframe>
+    <!-- Si el PDF no existe, mostrará un mensaje -->
+  </div>
+</div>
+
+<!-- MODAL PARA IMÁGENES (Opcional) -->
+<div id="imageModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3><i class="fas fa-image"></i> Vista Ampliada</h3>
+      <button class="modal-close" onclick="document.getElementById('imageModal').classList.remove('active')">&times;</button>
+    </div>
+    <div style="width: 100%; height: calc(100% - 60px); display: flex; align-items: center; justify-content: center; background: #000;">
+      <!-- TODO: Tu imagen ampliada aquí -->
+      <p style="color: white;">Imagen en pantalla completa</p>
+    </div>
+  </div>
+</div>

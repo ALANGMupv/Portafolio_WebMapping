@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 4 - Zonas Válidas | Portafolio WebMapping</title>
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Reutilizamos el mismo CSS de prácticas para mantener estilos -->
+    <link rel="stylesheet" href="css/practica1.css">
+
+    <!-- Si ya tienes un JS común para toggle móvil/accordion, puedes enlazarlo aquí.
+       Si no, dejo un JS mínimo al final para el menú móvil y el acordeón. -->
+
+    <style>
+        /* Contenedor del WebMap (iframe) con el mismo estilo de tus cards */
+        .webmap-container {
+            width: 100%;
+            height: 80vh;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--light);
+        }
+
+        .webmap-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Por si el mapa tiene controles que se “pelean” con el header fijo */
+        .webmap-note {
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>WebMapping Portfolio</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+
+                <li class="dropdown" id="dropdownPracticas">
+                    <a href="index.html#practicas" class="dropdown-toggle" id="dropdownToggle">
+                        <i class="fas fa-map"></i> Prácticas <i class="fas fa-chevron-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li><a href="practica1.html"><span class="practice-num">01</span> Introducción a QGIS</a></li>
+                        <li><a href="practica3.html"><span class="practice-num">03</span> Mapa de Temperaturas</a></li>
+                        <li><a href="practica4.html" class="active"><span class="practice-num">04</span> Zonas
+                                Válidas</a></li>
+                        <li><a href="practica5.html"><span class="practice-num">05</span> Análisis de Severidad</a></li>
+                        <li><a href="practica7.html"><span class="practice-num">07</span> Análisis Estadístico</a></li>
+                        <li><a href="practica8.html"><span class="practice-num">08</span> Contenedores Madrid</a></li>
+                        <li><a href="practica9.html"><span class="practice-num">09</span> Índices SAVI y EVI</a></li>
+                        <li><a href="practica10.html"><span class="practice-num">10</span> Análisis Temporal</a></li>
+                        <li><a href="practica11.html"><span class="practice-num">11</span> WebMapping Avanzado</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="practice-header">
+        <div class="practice-header-content">
+            <div class="practice-number">
+                <i class="fas fa-layer-group"></i>
+                PRÁCTICA 04
+            </div>
+
+            <h1 class="practice-title">Zonas Válidas</h1>
+
+            <p class="practice-subtitle">
+                Generación y visualización de una capa vectorial de zonas válidas mediante análisis espacial y
+                publicación como WebMap.
+            </p>
+
+            <div class="practice-meta">
+                <div class="meta-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Formato final: WebMap</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map"></i>
+                    <span>Librería: Leaflet</span>
+                </div>
+                <a href="#resultados" class="meta-cta">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>Ver WebMap</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- DESARROLLO (ACORDEÓN) -->
+        <section class="section accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2 class="section-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    Objetivo y Desarrollo de la Práctica
+                </h2>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+
+            <div class="accordion-content">
+                <div class="section-content">
+                    <p>
+                        El objetivo de esta práctica es obtener la capa <strong>Zonas Válidas</strong> como resultado de
+                        un proceso de
+                        <strong>análisis espacial</strong> sobre datos vectoriales, y finalmente publicarla en un
+                        <strong>mapa web interactivo</strong>.
+                    </p>
+                    <p>
+                        Para ello se trabaja con la información geográfica disponible en el enunciado, aplicando
+                        operaciones típicas de SIG
+                        (selección, geoprocesos y generación del resultado final) y exportando la capa para su
+                        visualización en web.
+                    </p>
+
+                    <div class="tech-info">
+                        <h4><i class="fas fa-info-circle"></i> Información técnica</h4>
+                        <ul>
+                            <li><strong>Entrada:</strong> capa vectorial (SHP) usada para generar el resultado.</li>
+                            <li><strong>Salida:</strong> WebMap Leaflet con capa vectorial publicada (GeoJSON embebido o
+                                referenciado).</li>
+                            <li><strong>Interacción:</strong> zoom, pan, popup de atributos y control de capas.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <!-- Si tienes el PDF del enunciado, cambia la ruta:
+             assets/pdfs/pract4.pdf -->
+                    <button class="btn btn-primary" onclick="openPdfModal()">
+                        <i class="fas fa-file-pdf"></i>
+                        Ver Enunciado PDF
+                    </button>
+
+                    <!-- Si tienes un SHP/GeoJSON para descargar, ajusta la ruta -->
+                    <a href="assets/data/pract4_zonas_validas.zip" class="btn btn-success"
+                        download="Practica4_ZonasValidas.zip">
+                        <i class="fas fa-download"></i>
+                        Descargar datos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTADOS -->
+        <section class="section" id="resultados">
+            <h2 class="section-title">
+                <i class="fas fa-map-marked-alt"></i>
+                WebMap - Zonas Válidas
+            </h2>
+
+            <div class="section-content">
+                <p>
+                    A continuación se muestra el <strong>mapa web interactivo</strong> con la capa resultante
+                    <strong>Zonas Válidas</strong>.
+                    Se puede navegar con zoom y desplazamiento, y consultar los atributos disponibles mediante popup.
+                </p>
+                <p class="webmap-note">
+                    <i class="fas fa-lightbulb"></i>
+                    Si el mapa no carga, revisa la ruta del iframe (por defecto apunta a
+                    <strong>zonasValidas.html</strong>).
+                </p>
+            </div>
+
+            <!-- AQUÍ VA EL WEBMAP -->
+            <div class="webmap-container">
+                <!-- Ajusta la ruta si tu webmap está en otra carpeta, por ejemplo:
+           src="html/zonasValidas.html" -->
+                <iframe src="zonasValidas.html" title="WebMap Zonas Válidas"></iframe>
+            </div>
+        </section>
+
+        <!-- NAVEGACIÓN -->
+        <div class="practice-navigation">
+            <a href="index.html" class="nav-practice">
+                <i class="fas fa-arrow-left"></i>
+                <div class="nav-practice-info">
+                    <h5>Volver a</h5>
+                    <p>Inicio del Portafolio</p>
+                </div>
+            </a>
+
+            <a href="practica5.html" class="nav-practice">
+                <div class="nav-practice-info" style="text-align: right;">
+                    <h5>Siguiente Práctica</h5>
+                    <p>Práctica 05 - Análisis de Severidad</p>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- MODAL PDF (si no tienes pdf aún, igual no pasa nada; el botón abrirá el modal vacío) -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-pdf"></i> Enunciado de la Práctica</h3>
+                <button class="modal-close" onclick="closePdfModal()">&times;</button>
+            </div>
+            <iframe class="pdf-viewer" src="assets/pdfs/pract4.pdf" title="Enunciado Práctica 4">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        // ======= Menú móvil =======
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        const dropdown = document.getElementById('dropdownPracticas');
+        const dropdownToggle = document.getElementById('dropdownToggle');
+
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Dropdown en móvil (en escritorio funciona por :hover en CSS)
+        if (dropdown && dropdownToggle) {
+            dropdownToggle.addEventListener('click', (e) => {
+                // Solo activamos el comportamiento desplegable cuando el menú está en modo móvil (active)
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+
+        // ======= Acordeón =======
+        function toggleAccordion(headerEl) {
+            const section = headerEl.closest('.accordion-section');
+            if (!section) return;
+            section.classList.toggle('active');
+        }
+
+        // ======= Modal PDF =======
+        function openPdfModal() {
+            const modal = document.getElementById('pdfModal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closePdfModal() {
+            const modal = document.getElementById('pdfModal');
+            if (modal) modal.classList.remove('active');
+        }
+
+        // Cerrar modal al click fuera del contenido
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('pdfModal');
+            if (!modal || !modal.classList.contains('active')) return;
+            if (e.target === modal) modal.classList.remove('active');
+        });
+    </script>
+
+</body>
+
+</html>

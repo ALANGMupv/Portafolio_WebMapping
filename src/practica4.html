@@ -9,14 +9,12 @@
     <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Reutilizamos el mismo CSS de prácticas para mantener estilos -->
+    <!-- Reutilizamos el mismo CSS de prácticas -->
     <link rel="stylesheet" href="css/practica1.css">
 
-    <!-- Si ya tienes un JS común para toggle móvil/accordion, puedes enlazarlo aquí.
-       Si no, dejo un JS mínimo al final para el menú móvil y el acordeón. -->
+    <!-- JS para el menú móvil y acordeón -->
 
     <style>
-        /* Contenedor del WebMap (iframe) con el mismo estilo de tus cards */
         .webmap-container {
             width: 100%;
             height: 80vh;
@@ -33,7 +31,7 @@
             display: block;
         }
 
-        /* Por si el mapa tiene controles que se “pelean” con el header fijo */
+
         .webmap-note {
             margin-top: 0.75rem;
             font-size: 0.95rem;
@@ -152,14 +150,13 @@
                 </div>
 
                 <div class="action-buttons">
-                    <!-- Si tienes el PDF del enunciado, cambia la ruta:
-             assets/pdfs/pract4.pdf -->
+
                     <button class="btn btn-primary" onclick="openPdfModal()">
                         <i class="fas fa-file-pdf"></i>
                         Ver Enunciado PDF
                     </button>
 
-                    <!-- Si tienes un SHP/GeoJSON para descargar, ajusta la ruta -->
+
                     <a href="assets/data/pract4_zonas_validas.zip" class="btn btn-success"
                         download="Practica4_ZonasValidas.zip">
                         <i class="fas fa-download"></i>
@@ -182,18 +179,10 @@
                     <strong>Zonas Válidas</strong>.
                     Se puede navegar con zoom y desplazamiento, y consultar los atributos disponibles mediante popup.
                 </p>
-                <p class="webmap-note">
-                    <i class="fas fa-lightbulb"></i>
-                    Si el mapa no carga, revisa la ruta del iframe (por defecto apunta a
-                    <strong>zonasValidas.html</strong>).
-                </p>
             </div>
 
-            <!-- AQUÍ VA EL WEBMAP -->
             <div class="webmap-container">
-                <!-- Ajusta la ruta si tu webmap está en otra carpeta, por ejemplo:
-           src="html/zonasValidas.html" -->
-                <iframe src="zonasValidas.html" title="WebMap Zonas Válidas"></iframe>
+                <iframe src="assets/mapas/zonasValidas.html" title="WebMap Zonas Válidas"></iframe>
             </div>
         </section>
 
@@ -218,7 +207,7 @@
 
     </main>
 
-    <!-- MODAL PDF (si no tienes pdf aún, igual no pasa nada; el botón abrirá el modal vacío) -->
+    <!-- MODAL PDF -->
     <div id="pdfModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">

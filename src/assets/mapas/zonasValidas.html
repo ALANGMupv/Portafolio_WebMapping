@@ -21,58 +21,22 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
 
-        #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-        }
-
-        /* FULLSCREEN OVERRIDE: fuerza el mapa a ocupar todo */
-        html,
-        body {
-            width: 100% !important;
-            height: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background: #fff !important;
-            overflow: hidden !important;
-        }
-
-        /* Si tienes fondo decorativo, lo ocultamos para que no se vea “marco” */
-        .background {
-            display: none !important;
-        }
-
-        /* Si existe un contenedor, lo expandimos */
         #map-container {
-            width: 100% !important;
-            height: 100% !important;
-            margin: 0 !important;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
 
-        /* El div #map SIEMPRE a pantalla completa */
-        #map {
-            position: fixed !important;
-            inset: 0 !important;
-            /* top/right/bottom/left = 0 */
-            width: 100% !important;
-            height: 100% !important;
-            border-radius: 0 !important;
-        }
-
-        /* El id generado por folium también a pantalla completa */
-        #map_6e9fd95f7641206935e4948642ea198d {
-            position: fixed !important;
-            inset: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            top: 0 !important;
-            left: 0 !important;
-            border-radius: 0 !important;
+        /* Ensure specific map divs are full screen */
+        .folium-map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
     </style>
 
@@ -89,19 +53,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <style>
-        #map_6e9fd95f7641206935e4948642ea198d {
-            position: relative;
-            width: 100%;
-            height: 90%;
-            left: 0;
-            top: 5%;
-        }
 
-        .leaflet-container {
-            font-size: 1rem;
-        }
-    </style>
 
     <style>
         .foliumpopup {
@@ -122,59 +74,12 @@
         }
     </style>
 
-    <style>
-        /* Reset de estilos */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        /* Fuente y color de fondo */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.5;
-            font-size: 16px;
-            overflow-x: hidden;
-        }
-
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(10deg, #fafafa7f, #607d8b69),
-                url("../img/pngwing.com.png") no-repeat center center;
-            background-size: cover;
-        }
-
-        #map-container {
-            width: 80%;
-            height: 98%;
-            margin: 40px auto 0;
-            position: relative;
-        }
-
-        #map {
-            width: 90%;
-            height: 90%;
-            position: relative;
-            border-radius: 20px;
-        }
-
-        #map_6e9fd95f7641206935e4948642ea198d {
-            border-radius: 20px;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="background"></div>
+
 
     <div id="map-container">
         <div class="folium-map" id="map_6e9fd95f7641206935e4948642ea198d"></div>

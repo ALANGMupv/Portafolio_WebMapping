@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 5 - Análisis de Severidad del Fuego | Portafolio WebMapping</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/practica1.css">
+    <script src="js/practica1.js" defer></script>
+</head>
+<body>
+
+<!-- NAVEGACIÓN -->
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <i class="fas fa-globe-americas"></i>
+            <span>WebMapping Portfolio</span>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="dropdown">
+                <a href="index.html#practicas" class="dropdown-toggle">
+                    <i class="fas fa-map"></i> Prácticas <i class="fas fa-chevron-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="practica1.html"><span class="practice-num">01</span> Introducción a QGIS</a></li>
+                    <li><a href="practica3.html"><span class="practice-num">03</span> Temperaturas y Precipitaciones</a></li>
+                    <li><a href="practica4.html"><span class="practice-num">04</span> Zonas Válidas</a></li>
+                    <li><a href="practica5.html" class="active"><span class="practice-num">05</span> Análisis de Severidad</a></li>
+                    <li><a href="practica7.html"><span class="practice-num">07</span> Análisis Estadístico</a></li>
+                    <li><a href="practica8.html"><span class="practice-num">08</span> Contenedores Madrid</a></li>
+                    <li><a href="practica9.html"><span class="practice-num">09</span> Índices SAVI y EVI</a></li>
+                    <li><a href="practica10.html"><span class="practice-num">10</span> Análisis Temporal</a></li>
+                    <li><a href="practica11.html"><span class="practice-num">11</span> WebMapping Avanzado</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- HEADER -->
+<header class="practice-header">
+    <div class="practice-header-content">
+        <div class="practice-number">
+            <i class="fas fa-layer-group"></i>
+            PRÁCTICA 05
+        </div>
+        <h1 class="practice-title">Severidad</h1>
+        <p class="practice-subtitle">
+            Cálculo del índice dNBR y análisis de severidad mediante imágenes satélite
+        </p>
+        <div class="practice-meta">
+            <div class="meta-item">
+                <i class="fas fa-map"></i>
+                <span>Formato final: WebMap</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-tools"></i>
+                <span>Software: QGIS</span>
+            </div>
+            <a href="#resultados" class="meta-cta">
+                <i class="fas fa-arrow-down"></i>
+                <span>Ver resultados</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+
+    <!-- DESARROLLO -->
+    <section class="section accordion-section">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h2 class="section-title">
+                <i class="fas fa-clipboard-list"></i>
+                Objetivo y Desarrollo de la Práctica
+            </h2>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </div>
+
+        <div class="accordion-content">
+            <div class="section-content">
+                <p>
+                    El objetivo de esta práctica es analizar la <strong>severidad de un incendio forestal</strong>
+                    mediante el tratamiento y análisis de imágenes satélite, utilizando índices espectrales
+                    en un Sistema de Información Geográfica.
+                </p>
+
+                <p>
+                    A partir de imágenes Sentinel-2 obtenidas antes y después del incendio, se calcula el
+                    <strong>índice NBR</strong> y posteriormente el <strong>índice dNBR</strong>, que permite
+                    estimar el grado de afectación de la vegetación.
+                </p>
+
+                <p>
+                    El índice dNBR se reclasifica en distintos niveles de severidad, generando un
+                    <strong>raster de severidad del fuego</strong> que identifica las zonas más afectadas.
+                </p>
+
+                <p>
+                    Finalmente, los resultados se preparan para su <strong>visualización mediante un mapa web</strong>
+                    y para su análisis espacial posterior.
+                </p>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="openPdfModal()">
+                    <i class="fas fa-file-pdf"></i>
+                    Ver Enunciado PDF
+                </button>
+                <a href="assets/raster/Severidad.tif"
+                   class="btn btn-success"
+                   download="Severidad_dNBR.tif">
+                    <i class="fas fa-download"></i>
+                    Descargar Raster (Severidad.tif)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="section" id="resultados">
+        <h2 class="section-title">
+            <i class="fas fa-map"></i>
+            Resultados Obtenidos
+        </h2>
+
+        <div class="section-content">
+            <p>
+                El resultado principal de la práctica es un <strong>mapa de severidad del fuego</strong>,
+                obtenido a partir del índice dNBR, que permite identificar las zonas afectadas y su
+                grado de impacto tras el incendio.
+            </p>
+        </div>
+
+        <div class="results-gallery">
+            <div class="result-item">
+                <div class="result-image">
+                    <img src="assets/images/pract5_placeholder.png"
+                         alt="Mapa de severidad del fuego (pendiente de WebMap)">
+                </div>
+                <div class="result-info">
+                    <h4>Mapa de Severidad</h4>
+                    <p>Índice dNBR reclasificado por niveles de severidad</p>
+                    <span class="result-format">WebMap</span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <div class="practice-navigation">
+        <a href="practica4.html" class="nav-practice">
+            <i class="fas fa-arrow-left"></i>
+            <div class="nav-practice-info">
+                <h5>Práctica anterior</h5>
+                <p>Práctica 04 - Zonas Válidas</p>
+            </div>
+        </a>
+        <a href="practica7.html" class="nav-practice">
+            <div class="nav-practice-info" style="text-align: right;">
+                <h5>Siguiente práctica</h5>
+                <p>Práctica 07 - Análisis Estadístico</p>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+</main>
+
+<!-- MODAL PDF -->
+<div id="pdfModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-file-pdf"></i> Enunciado de la Práctica</h3>
+            <button class="modal-close" onclick="closePdfModal()">&times;</button>
+        </div>
+        <iframe
+                class="pdf-viewer"
+                src="assets/pdfs/pract5.pdf"
+                title="Enunciado Práctica 5">
+        </iframe>
+    </div>
+</div>
+
+</body>
+</html>

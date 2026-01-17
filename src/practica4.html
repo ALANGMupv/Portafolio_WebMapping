@@ -231,11 +231,8 @@
                 navMenu.classList.toggle('active');
             });
         }
-
-        // Dropdown en móvil (en escritorio funciona por :hover en CSS)
         if (dropdown && dropdownToggle) {
             dropdownToggle.addEventListener('click', (e) => {
-                // Solo activamos el comportamiento desplegable cuando el menú está en modo móvil (active)
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     dropdown.classList.toggle('active');
@@ -260,8 +257,6 @@
             const modal = document.getElementById('pdfModal');
             if (modal) modal.classList.remove('active');
         }
-
-        // Cerrar modal al click fuera del contenido
         document.addEventListener('click', (e) => {
             const modal = document.getElementById('pdfModal');
             if (!modal || !modal.classList.contains('active')) return;

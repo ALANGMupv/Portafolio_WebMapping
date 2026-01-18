@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MNDWI Mongolia</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .info-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="info-overlay">
+        <h4>MNDWI Mongolia</h4>
+        <p>Este mapa requiere ejecución en Google Earth Engine. Esta es una vista previa centrada en la zona de estudio.
+        </p>
+    </div>
+    <script>
+        var map = L.map('map').setView([50.313855, 92.707227], 9);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker([50.313855, 92.707227]).addTo(map)
+            .bindPopup('Centro de la zona de estudio (Mongolia)')
+            .openPopup();
+    </script>
+</body>
+
+</html>

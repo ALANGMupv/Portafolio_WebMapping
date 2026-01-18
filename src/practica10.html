@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Práctica 8 - Folium: Contenedores y Accidentes | Portafolio WebMapping</title>
+    <title>Práctica 10 - GEE: Índices Ambientales | Portafolio WebMapping</title>
 
     <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,11 +15,10 @@
     <!-- JS para el menú móvil y acordeón -->
 
     <style>
-        /* Contenedor del WebMap (iframe) con el mismo estilo de tus cards */
+        /* Contenedor del WebMap (iframe) */
         .webmap-container {
             width: 100%;
             height: 70vh;
-            /* Un poco más pequeño para que quepan dos si es necesario */
             border-radius: 12px;
             overflow: hidden;
             border: 2px solid var(--border);
@@ -41,6 +40,33 @@
         .section-separator {
             margin: 3rem 0;
             border-top: 1px solid var(--border);
+        }
+
+        .timelapse-container {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .timelapse-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .legend-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
@@ -69,11 +95,9 @@
                         <li><a href="practica4.html"><span class="practice-num">04</span> Zonas Válidas</a></li>
                         <li><a href="practica5.html"><span class="practice-num">05</span> Análisis de Severidad</a></li>
                         <li><a href="practica7.html"><span class="practice-num">07</span> Análisis Estadístico</a></li>
-                        <li><a href="practica8.html" class="active"><span class="practice-num">08</span> Contenedores
-                                Madrid</a></li>
-                        <li><a href="practica9.html"><span class="practice-num">09</span> Índices SAVI y
-                                EVI</a></li>
-                        <li><a href="practica10.html"><span class="practice-num">10</span> Análisis Temporal</a></li>
+                        <li><a href="practica8.html"><span class="practice-num">08</span> Contenedores Madrid</a></li>
+                        <li><a href="practica10.html" class="active"><span class="practice-num">10</span> Análisis
+                                Temporal</a></li>
                         <li><a href="practica11.html"><span class="practice-num">11</span> WebMapping Avanzado</a></li>
                     </ul>
                 </li>
@@ -89,29 +113,29 @@
     <header class="practice-header">
         <div class="practice-header-content">
             <div class="practice-number">
-                <i class="fas fa-map-marked-alt"></i>
-                PRÁCTICA 08
+                <i class="fas fa-satellite"></i>
+                PRÁCTICA 10
             </div>
 
-            <h1 class="practice-title">Folium: Contenedores y Accidentes</h1>
+            <h1 class="practice-title">Cálculo de Índices Ambientales con GEE</h1>
 
             <p class="practice-subtitle">
-                Creación de WebMaps interactivos con Python y Folium para el análisis de gestión de residuos y
-                accidentalidad en Madrid.
+                Uso de Google Earth Engine en Python para el cálculo y visualización de índices de agua (NDWI y MNDWI) y
+                generación de TimeLapses.
             </p>
 
             <div class="practice-meta">
                 <div class="meta-item">
                     <i class="fas fa-globe"></i>
-                    <span>Formato final: WebMaps</span>
+                    <span>Formato final: WebMaps + TimeLapse</span>
                 </div>
                 <div class="meta-item">
                     <i class="fas fa-code"></i>
-                    <span>Librería: Folium (Python)</span>
+                    <span>Librería: Folium + GEE API</span>
                 </div>
                 <a href="#resultados" class="meta-cta">
                     <i class="fas fa-arrow-down"></i>
-                    <span>Ver Mapas</span>
+                    <span>Ver Resultados</span>
                 </a>
             </div>
         </div>
@@ -132,112 +156,119 @@
             <div class="accordion-content">
                 <div class="section-content">
                     <p>
-                        En esta práctica se utiliza la biblioteca <strong>Folium</strong> de Python para la
-                        visualización de datos geoespaciales interactivos. Se abordan dos casos de estudio principales
-                        en la ciudad de Madrid:
+                        En esta práctica se utiliza la plataforma <strong>Google Earth Engine (GEE)</strong> para
+                        obtener valores de índices medioambientales a partir de constelaciones de satélites (Landsat y
+                        Sentinel).
                     </p>
 
-                    <h3>Tarea 1: Gestión de Residuos</h3>
-                    <p>
-                        Realización de un Web Mapping sobre la ubicación de contenedores. Se han generado capas
-                        diferenciadas:
-                    </p>
+                    <h3>Índices Calculados</h3>
                     <ul>
-                        <li><strong>Mapas de calor:</strong> concentración de contenedores de vidrio y envases.</li>
-                        <li><strong>Mapas puntuales:</strong> ubicación exacta diferenciada por tipo de residuo (vidrio,
-                            envases, papel, orgánico).</li>
+                        <li><strong>NDWI (Normalized Difference Water Index):</strong> Monitorización de cambios en
+                            contenido de aguas superficiales. (McFeeters, 1996).</li>
+                        <li><strong>MNDWI (Modified Normalized Difference Water Index):</strong> Variante mejorada para
+                            realzar características de agua. (Xu, 2006).</li>
                     </ul>
 
-                    <h3>Tarea 2: Análisis de Accidentalidad</h3>
-                    <p>
-                        Generación de mapas de calor para analizar los accidentes de tráfico ocurridos en 2023:
-                    </p>
+                    <h3>Tareas Realizadas</h3>
                     <ul>
-                        <li>Distribución temporal por meses (<strong>HeatMapWithTime</strong>).</li>
-                        <li>Filtrado por conductores (diferenciando por sexo y tipo de vehículo).</li>
+                        <li>Cálculo de índices NDWI y MNDWI para zonas de estudio en <strong>México</strong> y
+                            <strong>Mongolia</strong>.</li>
+                        <li>Exportación de imágenes GeoTIFF.</li>
+                        <li>Generación de TimeLapses animados para observar la evolución temporal en 2024.</li>
                     </ul>
 
                     <div class="tech-info">
-                        <h4><i class="fas fa-info-circle"></i> Tecnologías empleadas</h4>
-                        <ul>
-                            <li><strong>Python:</strong> Pandas, Folium (Plugins: HeatMap, HeatMapWithTime,
-                                MarkerCluster, DualMap).</li>
-                            <li><strong>Datos:</strong> Portales de datos abiertos del Ayuntamiento de Madrid.</li>
-                        </ul>
+                        <h4>Rampa de Colores utilizada</h4>
+                        <img src="assets/images/RAMPA.png" alt="Rampa de colores NDWI" class="legend-image"
+                            style="max-width: 400px;">
                     </div>
                 </div>
-
-                <!-- Botón PDF si fuera necesario -->
-                <!-- <div class="action-buttons">...</div> -->
             </div>
         </section>
 
         <!-- RESULTADOS -->
         <section class="section" id="resultados">
 
-            <!-- SECCIÓN 1: CONTENEDORES -->
+            <!-- SECCIÓN 1: MEXICO -->
             <h2 class="section-title">
-                <i class="fas fa-trash-alt"></i>
-                Gestión de Residuos
+                <i class="fas fa-water"></i>
+                Tarea 1: NDWI México (Sentinel-2)
             </h2>
             <div class="section-content">
                 <p>
-                    Mapa interactivo mostrando la distribución de contenedores de reciclaje en Madrid. Incluye
-                    agrupaciones (MarkerCluster) y mapas de calor para identificar zonas de mayor densidad.
+                    Visualización del Índice de Agua de Diferencia Normalizada (NDWI) calculado a partir de imágenes
+                    Sentinel-2.
                 </p>
             </div>
 
             <div class="webmap-container">
-                <iframe src="assets/mapas/contenedores_madrid.html" title="Mapa de Contenedores"></iframe>
-            </div>
-
-            <div class="action-buttons" style="margin-bottom: 2rem;">
-                <a href="assets/mapas/contenedores_madrid.html" class="btn btn-primary"
-                    download="contenedores_madrid.html">
-                    <i class="fas fa-download"></i> Descargar Mapa Contenedores
-                </a>
+                <iframe src="assets/mapas/ndwi_mexico.html" title="Mapa NDWI Mexico"></iframe>
             </div>
 
             <div class="section-separator"></div>
 
-            <!-- SECCIÓN 2: ACCIDENTES -->
+            <!-- SECCIÓN 2: MONGOLIA -->
             <h2 class="section-title">
-                <i class="fas fa-car-crash"></i>
-                Análisis de Accidentalidad
+                <i class="fas fa-water"></i>
+                Tarea 1: MNDWI Mongolia (Landsat 8)
             </h2>
             <div class="section-content">
                 <p>
-                    Mapa de calor con evolución temporal de los accidentes de tráfico en Madrid durante el año 2023.
-                    Permite visualizar la variación de la densidad de accidentes mes a mes.
+                    Visualización del Índice de Agua de Diferencia Normalizada Modificado (MNDWI) calculado a partir de
+                    imágenes Landsat 8.
                 </p>
             </div>
 
             <div class="webmap-container">
-                <iframe src="assets/mapas/accidentes_madrid.html" title="Mapa de Accidentes"></iframe>
+                <iframe src="assets/mapas/mndwi_mongolia.html" title="Mapa MNDWI Mongolia"></iframe>
             </div>
 
-            <div class="action-buttons">
-                <a href="assets/mapas/accidentes_madrid.html" class="btn btn-primary" download="accidentes_madrid.html">
-                    <i class="fas fa-download"></i> Descargar Mapa Accidentes
-                </a>
+            <div class="section-separator"></div>
+
+            <!-- SECCIÓN 3: TIMELAPSE -->
+            <h2 class="section-title">
+                <i class="fas fa-video"></i>
+                Tarea 2: TimeLapses (Parque Nacional Tablas de Daimiel)
+            </h2>
+            <div class="section-content">
+                <p>
+                    Generación de animaciones temporales para observar la evolución de la zona de estudio durante el año
+                    2024.
+                </p>
+
+                <div class="timelapse-container">
+                    <span class="timelapse-title">Landsat 9 (GIF Animado)</span>
+                    <a href="https://earthengine.googleapis.com/v1/projects/682666798620/videoThumbnails/656dc459698acef459669e9789d9b3dd-e28f434c884d70914d5d282be7365d62:getPixels"
+                        target="_blank">
+                        Ver TimeLapse Landsat 9 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="timelapse-container">
+                    <span class="timelapse-title">Sentinel 2 (GIF Animado)</span>
+                    <a href="https://earthengine.googleapis.com/v1/projects/682666798620/videoThumbnails/d1f6e8726fcb58ab9a5847d6b91250f0-9b482e5df6da64213db943648f94d922:getPixels"
+                        target="_blank">
+                        Ver TimeLapse Sentinel 2 <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
 
         </section>
 
         <!-- NAVEGACIÓN -->
         <div class="practice-navigation">
-            <a href="practica7.html" class="nav-practice">
+            <a href="practica8.html" class="nav-practice">
                 <i class="fas fa-arrow-left"></i>
                 <div class="nav-practice-info">
                     <h5>Anterior Práctica</h5>
-                    <p>Práctica 07 - Análisis Estadístico</p>
+                    <p>Práctica 08 - Contenedores y Accidentes</p>
                 </div>
             </a>
 
-            <a href="practica10.html" class="nav-practice">
+            <a href="practica11.html" class="nav-practice">
                 <div class="nav-practice-info" style="text-align: right;">
                     <h5>Siguiente Práctica</h5>
-                    <p>Práctica 10 - Análisis Temporal</p>
+                    <p>Práctica 11 - WebMapping Avanzado</p>
                 </div>
                 <i class="fas fa-arrow-right"></i>
             </a>

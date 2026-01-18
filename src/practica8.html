@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 8 - Folium: Contenedores y Accidentes | Portafolio WebMapping</title>
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Reutilizamos el mismo CSS de prácticas para mantener estilos -->
+    <link rel="stylesheet" href="css/practica1.css">
+
+    <!-- JS para el menú móvil y acordeón -->
+
+    <style>
+        /* Contenedor del WebMap (iframe) con el mismo estilo de tus cards */
+        .webmap-container {
+            width: 100%;
+            height: 70vh;
+            /* Un poco más pequeño para que quepan dos si es necesario */
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--light);
+            margin-bottom: 2rem;
+        }
+
+        .webmap-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .practice-subtitle {
+            margin-bottom: 2rem;
+        }
+
+        .section-separator {
+            margin: 3rem 0;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-globe-americas"></i>
+                <span>WebMapping Portfolio</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+
+                <li class="dropdown" id="dropdownPracticas">
+                    <a href="index.html#practicas" class="dropdown-toggle" id="dropdownToggle">
+                        <i class="fas fa-map"></i> Prácticas <i class="fas fa-chevron-down"></i>
+                    </a>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li><a href="practica1.html"><span class="practice-num">01</span> Introducción a QGIS</a></li>
+                        <li><a href="practica3.html"><span class="practice-num">03</span> Mapa de Temperaturas</a></li>
+                        <li><a href="practica4.html"><span class="practice-num">04</span> Zonas Válidas</a></li>
+                        <li><a href="practica5.html"><span class="practice-num">05</span> Análisis de Severidad</a></li>
+                        <li><a href="practica7.html"><span class="practice-num">07</span> Análisis Estadístico</a></li>
+                        <li><a href="practica8.html" class="active"><span class="practice-num">08</span> Contenedores
+                                Madrid</a></li>
+                        <li><a href="practica9.html"><span class="practice-num">09</span> Índices SAVI y
+                                EVI</a></li>
+                        <li><a href="practica10.html"><span class="practice-num">10</span> Análisis Temporal</a></li>
+                        <li><a href="practica11.html"><span class="practice-num">11</span> WebMapping Avanzado</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="practice-header">
+        <div class="practice-header-content">
+            <div class="practice-number">
+                <i class="fas fa-map-marked-alt"></i>
+                PRÁCTICA 08
+            </div>
+
+            <h1 class="practice-title">Folium: Contenedores y Accidentes</h1>
+
+            <p class="practice-subtitle">
+                Creación de WebMaps interactivos con Python y Folium para el análisis de gestión de residuos y
+                accidentalidad en Madrid.
+            </p>
+
+            <div class="practice-meta">
+                <div class="meta-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Formato final: WebMaps</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-code"></i>
+                    <span>Librería: Folium (Python)</span>
+                </div>
+                <a href="#resultados" class="meta-cta">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>Ver Mapas</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- DESARROLLO (ACORDEÓN) -->
+        <section class="section accordion-section">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <h2 class="section-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    Objetivos y Desarrollo
+                </h2>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+
+            <div class="accordion-content">
+                <div class="section-content">
+                    <p>
+                        En esta práctica se utiliza la biblioteca <strong>Folium</strong> de Python para la
+                        visualización de datos geoespaciales interactivos. Se abordan dos casos de estudio principales
+                        en la ciudad de Madrid:
+                    </p>
+
+                    <h3>Tarea 1: Gestión de Residuos</h3>
+                    <p>
+                        Realización de un Web Mapping sobre la ubicación de contenedores. Se han generado capas
+                        diferenciadas:
+                    </p>
+                    <ul>
+                        <li><strong>Mapas de calor:</strong> concentración de contenedores de vidrio y envases.</li>
+                        <li><strong>Mapas puntuales:</strong> ubicación exacta diferenciada por tipo de residuo (vidrio,
+                            envases, papel, orgánico).</li>
+                    </ul>
+
+                    <h3>Tarea 2: Análisis de Accidentalidad</h3>
+                    <p>
+                        Generación de mapas de calor para analizar los accidentes de tráfico ocurridos en 2023:
+                    </p>
+                    <ul>
+                        <li>Distribución temporal por meses (<strong>HeatMapWithTime</strong>).</li>
+                        <li>Filtrado por conductores (diferenciando por sexo y tipo de vehículo).</li>
+                    </ul>
+
+                    <div class="tech-info">
+                        <h4><i class="fas fa-info-circle"></i> Tecnologías empleadas</h4>
+                        <ul>
+                            <li><strong>Python:</strong> Pandas, Folium (Plugins: HeatMap, HeatMapWithTime,
+                                MarkerCluster, DualMap).</li>
+                            <li><strong>Datos:</strong> Portales de datos abiertos del Ayuntamiento de Madrid.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Botón PDF si fuera necesario -->
+                <!-- <div class="action-buttons">...</div> -->
+            </div>
+        </section>
+
+        <!-- RESULTADOS -->
+        <section class="section" id="resultados">
+
+            <!-- SECCIÓN 1: CONTENEDORES -->
+            <h2 class="section-title">
+                <i class="fas fa-trash-alt"></i>
+                Gestión de Residuos
+            </h2>
+            <div class="section-content">
+                <p>
+                    Mapa interactivo mostrando la distribución de contenedores de reciclaje en Madrid. Incluye
+                    agrupaciones (MarkerCluster) y mapas de calor para identificar zonas de mayor densidad.
+                </p>
+            </div>
+
+            <div class="webmap-container">
+                <iframe src="assets/mapas/contenedores_madrid.html" title="Mapa de Contenedores"></iframe>
+            </div>
+
+            <div class="action-buttons" style="margin-bottom: 2rem;">
+                <a href="assets/mapas/contenedores_madrid.html" class="btn btn-primary"
+                    download="contenedores_madrid.html">
+                    <i class="fas fa-download"></i> Descargar Mapa Contenedores
+                </a>
+            </div>
+
+            <div class="section-separator"></div>
+
+            <!-- SECCIÓN 2: ACCIDENTES -->
+            <h2 class="section-title">
+                <i class="fas fa-car-crash"></i>
+                Análisis de Accidentalidad
+            </h2>
+            <div class="section-content">
+                <p>
+                    Mapa de calor con evolución temporal de los accidentes de tráfico en Madrid durante el año 2023.
+                    Permite visualizar la variación de la densidad de accidentes mes a mes.
+                </p>
+            </div>
+
+            <div class="webmap-container">
+                <iframe src="assets/mapas/accidentes_madrid.html" title="Mapa de Accidentes"></iframe>
+            </div>
+
+            <div class="action-buttons">
+                <a href="assets/mapas/accidentes_madrid.html" class="btn btn-primary" download="accidentes_madrid.html">
+                    <i class="fas fa-download"></i> Descargar Mapa Accidentes
+                </a>
+            </div>
+
+        </section>
+
+        <!-- NAVEGACIÓN -->
+        <div class="practice-navigation">
+            <a href="practica7.html" class="nav-practice">
+                <i class="fas fa-arrow-left"></i>
+                <div class="nav-practice-info">
+                    <h5>Anterior Práctica</h5>
+                    <p>Práctica 07 - Análisis Estadístico</p>
+                </div>
+            </a>
+
+            <a href="practica9.html" class="nav-practice">
+                <div class="nav-practice-info" style="text-align: right;">
+                    <h5>Siguiente Práctica</h5>
+                    <p>Práctica 09 - Índices SAVI y EVI</p>
+                </div>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- JS Común -->
+    <script>
+        // ======= Menú móvil =======
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        const dropdown = document.getElementById('dropdownPracticas');
+        const dropdownToggle = document.getElementById('dropdownToggle');
+
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        if (dropdown && dropdownToggle) {
+            dropdownToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+
+        // ======= Acordeón =======
+        function toggleAccordion(headerEl) {
+            const section = headerEl.closest('.accordion-section');
+            if (!section) return;
+            section.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

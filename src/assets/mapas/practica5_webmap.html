@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapa de Severidad dNBR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <style>
+        #map { height: 100vh; width: 100%; margin: 0; }
+        .legend { background: white; padding: 10px; line-height: 18px; color: #555; box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; }
+        .legend i { width: 18px; height: 12px; float: left; margin-right: 8px; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script src="https://unpkg.com/proj4"></script> <script src="https://unpkg.com/georaster"></script>
+    <script src="https://unpkg.com/georaster-layer-for-leaflet/dist/georaster-layer-for-leaflet.min.js"></script>
+
+    <script>
+        const map = L.map('map').setView([0, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Definimos la escala de severidad dNBR
+        function getColor(d) {
+            return d > 660  ? '#7a0000' : // Severidad Alta
+                   d > 440  ? '#ff0000' : // Severidad Media-Alta
+                   d > 270  ? '#ffaa00' : // Severidad Media-Baja
+                   d > 100  ? '#ffff00' : // Severidad Baja
+                   d > -100 ? '#00ff00' : // No quemado
+                              '#006400' ; // Rebrote vegetación
+        }
+
+        const url = "Severidad.tiff";
+
+        fetch(url)
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => {
+                parseGeoraster(arrayBuffer).then(georaster => {
+                    
+                    const layer = new GeoRasterLayer({
+                        georaster: georaster,
+                        opacity: 0.7,
+                        pixelValuesToColorFn: function(pixelValues) {
+                            const val = pixelValues[0];
+                            if (isNaN(val) || val === georaster.noDataValue) return null;
+                            return getColor(val);
+                        },
+                        resolution: 128
+                    });
+
+                    layer.addTo(map);
+                    
+                    // Esto "vuela" automáticamente a donde está el archivo en el mundo
+                    map.fitBounds(layer.getBounds());
+                });
+            })
+            .catch(error => console.error("Error cargando el TIFF:", error));
+
+        // Añadir Leyenda
+        const legend = L.control({position: 'bottomright'});
+        legend.onAdd = function () {
+            const div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<h4>Severidad (dNBR)</h4>';
+            div.innerHTML += '<i style="background: #7a0000"></i> Muy Alta (>660)<br>';
+            div.innerHTML += '<i style="background: #ff0000"></i> Alta (440-660)<br>';
+            div.innerHTML += '<i style="background: #ffaa00"></i> Moderada (270-440)<br>';
+            div.innerHTML += '<i style="background: #ffff00"></i> Baja (100-270)<br>';
+            div.innerHTML += '<i style="background: #00ff00"></i> No quemado';
+            return div;
+        };
+        legend.addTo(map);
+    </script>
+</body>
+</html>

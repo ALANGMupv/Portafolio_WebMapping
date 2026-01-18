@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica 5 - Análisis de Severidad del Fuego | Portafolio WebMapping</title>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 5 - Severidad | Portafolio WebMapping</title>
+
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Reutilizamos el mismo CSS de prácticas -->
     <link rel="stylesheet" href="css/practica1.css">
-    <script src="js/practica1.js" defer></script>
+
+    <!-- JS para el menú móvil y acordeón -->
+
+    <style>
+        .webmap-container {
+            width: 100%;
+            height: 80vh;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--light);
+        }
+
+        .webmap-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+
+        .webmap-note {
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+    </style>
 </head>
+
 <body>
 
 <!-- NAVEGACIÓN -->
@@ -18,16 +49,20 @@
             <i class="fas fa-globe-americas"></i>
             <span>WebMapping Portfolio</span>
         </a>
+
         <ul class="nav-menu" id="navMenu">
             <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-            <li class="dropdown">
-                <a href="index.html#practicas" class="dropdown-toggle">
+
+            <li class="dropdown" id="dropdownPracticas">
+                <a href="index.html#practicas" class="dropdown-toggle" id="dropdownToggle">
                     <i class="fas fa-map"></i> Prácticas <i class="fas fa-chevron-down"></i>
                 </a>
-                <ul class="dropdown-menu">
+
+                <ul class="dropdown-menu" id="dropdownMenu">
                     <li><a href="practica1.html"><span class="practice-num">01</span> Introducción a QGIS</a></li>
-                    <li><a href="practica3.html"><span class="practice-num">03</span> Temperaturas y Precipitaciones</a></li>
-                    <li><a href="practica4.html"><span class="practice-num">04</span> Zonas Válidas</a></li>
+                    <li><a href="practica3.html"><span class="practice-num">03</span> Mapa de Temperaturas</a></li>
+                    <li><a href="practica4.html"><span class="practice-num">04</span> Zonas
+                        Válidas</a></li>
                     <li><a href="practica5.html" class="active"><span class="practice-num">05</span> Análisis de Severidad</a></li>
                     <li><a href="practica7.html"><span class="practice-num">07</span> Análisis Estadístico</a></li>
                     <li><a href="practica8.html"><span class="practice-num">08</span> Contenedores Madrid</a></li>
@@ -37,6 +72,7 @@
                 </ul>
             </li>
         </ul>
+
         <div class="mobile-toggle" id="mobileToggle">
             <i class="fas fa-bars"></i>
         </div>
@@ -99,7 +135,7 @@
 
                 <p>
                     El índice dNBR se reclasifica en distintos niveles de severidad, generando un
-                    <strong>raster de severidad del fuego</strong> que identifica las zonas más afectadas.
+                    <strong>raster de severidad del incendio</strong> que identifica las zonas más afectadas.
                 </p>
 
                 <p>
@@ -113,9 +149,17 @@
                     <i class="fas fa-file-pdf"></i>
                     Ver Enunciado PDF
                 </button>
-                <a href="assets/raster/Severidad.tif"
+
+                <a href="assets/pdfs/incendioPrac5.pdf"
                    class="btn btn-success"
-                   download="Severidad_dNBR.tif">
+                   download="incendioPrac5.pdf">
+                    <i class="fas fa-download"></i>
+                    Descargar PDF final
+                </a>
+
+                <a href="assets/resultados/SEVERIDAD.tiff"
+                   class="btn btn-success"
+                   download="Severidad.tiff">
                     <i class="fas fa-download"></i>
                     Descargar Raster (Severidad.tif)
                 </a>
@@ -126,32 +170,23 @@
     <!-- RESULTADOS -->
     <section class="section" id="resultados">
         <h2 class="section-title">
-            <i class="fas fa-map"></i>
-            Resultados Obtenidos
+            <i class="fas fa-map-marked-alt"></i>
+            WebMap - Severidad
         </h2>
 
         <div class="section-content">
             <p>
-                El resultado principal de la práctica es un <strong>mapa de severidad del fuego</strong>,
-                obtenido a partir del índice dNBR, que permite identificar las zonas afectadas y su
-                grado de impacto tras el incendio.
+                A continuación se muestra el <strong>mapa web interactivo</strong> con la capa resultante del
+                <strong>análisis de severidad del incendio</strong>, obtenida a partir del índice dNBR.
+                El mapa permite navegar mediante zoom y desplazamiento, así como consultar los valores de severidad
+                mediante ventanas emergentes (pop-ups).
             </p>
         </div>
 
-        <div class="results-gallery">
-            <div class="result-item">
-                <div class="result-image">
-                    <img src="assets/images/pract5_placeholder.png"
-                         alt="Mapa de severidad del fuego (pendiente de WebMap)">
-                </div>
-                <div class="result-info">
-                    <h4>Mapa de Severidad</h4>
-                    <p>Índice dNBR reclasificado por niveles de severidad</p>
-                    <span class="result-format">WebMap</span>
-                </div>
-            </div>
+        <!-- Cambiar aquí -->
+        <div class="webmap-container">
+            <iframe src="assets/mapas/practica5_webmap.html" title="WebMap Severidad"></iframe>
         </div>
-
     </section>
 
     <!-- NAVEGACIÓN -->
@@ -159,14 +194,15 @@
         <a href="practica4.html" class="nav-practice">
             <i class="fas fa-arrow-left"></i>
             <div class="nav-practice-info">
-                <h5>Práctica anterior</h5>
+                <h5>Volver a</h5>
                 <p>Práctica 04 - Zonas Válidas</p>
             </div>
         </a>
+
         <a href="practica7.html" class="nav-practice">
             <div class="nav-practice-info" style="text-align: right;">
-                <h5>Siguiente práctica</h5>
-                <p>Práctica 07 - Análisis Estadístico</p>
+                <h5>Siguiente Práctica</h5>
+                <p>Práctica 07 - Tabla de resultados y gráfico de rendimiento</p>
             </div>
             <i class="fas fa-arrow-right"></i>
         </a>
@@ -181,13 +217,56 @@
             <h3><i class="fas fa-file-pdf"></i> Enunciado de la Práctica</h3>
             <button class="modal-close" onclick="closePdfModal()">&times;</button>
         </div>
-        <iframe
-                class="pdf-viewer"
-                src="assets/pdfs/pract5.pdf"
-                title="Enunciado Práctica 5">
+        <iframe class="pdf-viewer" src="assets/pdfs/pract5.pdf" title="Enunciado Práctica 5">
         </iframe>
     </div>
 </div>
 
+<script>
+    // ======= Menú móvil =======
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    const dropdown = document.getElementById('dropdownPracticas');
+    const dropdownToggle = document.getElementById('dropdownToggle');
+
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+    if (dropdown && dropdownToggle) {
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+
+    // ======= Acordeón =======
+    function toggleAccordion(headerEl) {
+        const section = headerEl.closest('.accordion-section');
+        if (!section) return;
+        section.classList.toggle('active');
+    }
+
+    // ======= Modal PDF =======
+    function openPdfModal() {
+        const modal = document.getElementById('pdfModal');
+        if (modal) modal.classList.add('active');
+    }
+
+    function closePdfModal() {
+        const modal = document.getElementById('pdfModal');
+        if (modal) modal.classList.remove('active');
+    }
+    document.addEventListener('click', (e) => {
+        const modal = document.getElementById('pdfModal');
+        if (!modal || !modal.classList.contains('active')) return;
+        if (e.target === modal) modal.classList.remove('active');
+    });
+</script>
+
 </body>
+
 </html>

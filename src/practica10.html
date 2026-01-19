@@ -1,10 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Práctica 10 - Análisis Temporal | Portafolio WebMapping</title>
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS común -->
+    <link rel="stylesheet" href="css/practica1.css">
+
+    <style>
+        .webmap-container {
+            width: 100%;
+            height: 70vh;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--light);
+            margin-bottom: 2rem;
+        }
+
+        .webmap-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .timelapse-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--light);
+            margin-bottom: 2rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .timelapse-container img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .section-separator {
+            margin: 3rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section h3 {
+            margin-top: 1rem;
+        }
+
+    </style>
 </head>
+
 <body>
 
+<!-- NAVEGACIÓN -->
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <i class="fas fa-globe-americas"></i>
+            <span>WebMapping Portfolio</span>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+
+            <li class="dropdown" id="dropdownPracticas">
+                <a href="index.html#practicas" class="dropdown-toggle" id="dropdownToggle">
+                    <i class="fas fa-map"></i> Prácticas <i class="fas fa-chevron-down"></i>
+                </a>
+
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li><a href="practica1.html"><span class="practice-num">01</span> Introducción a QGIS</a></li>
+                    <li><a href="practica3.html"><span class="practice-num">03</span> Mapa de Temperaturas</a></li>
+                    <li><a href="practica4.html"><span class="practice-num">04</span> Zonas Válidas</a></li>
+                    <li><a href="practica5.html"><span class="practice-num">05</span> Análisis de Severidad</a></li>
+                    <li><a href="practica7.html"><span class="practice-num">07</span> Análisis Estadístico</a></li>
+                    <li><a href="practica8.html"><span class="practice-num">08</span> Contenedores Madrid</a></li>
+                    <li><a href="practica9.html"><span class="practice-num">09</span> Índices SAVI y EVI</a></li>
+                    <li><a href="practica10.html" class="active"><span class="practice-num">10</span> Análisis Temporal</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- HEADER -->
+<header class="practice-header">
+    <div class="practice-header-content">
+        <div class="practice-number">
+            <i class="fas fa-chart-line"></i>
+            PRÁCTICA 10
+        </div>
+
+        <h1 class="practice-title">Análisis Temporal con NDWI</h1>
+
+        <p class="practice-subtitle">
+            Análisis multitemporal de masas de agua mediante el índice NDWI y animaciones satelitales.
+        </p>
+
+        <div class="practice-meta">
+            <div class="meta-item">
+                <i class="fas fa-satellite"></i>
+                <span>Landsat y Sentinel-2</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                <span>Series temporales</span>
+            </div>
+            <a href="#resultados" class="meta-cta">
+                <i class="fas fa-arrow-down"></i>
+                <span>Ver mapas</span>
+            </a>
+            <a href="#gifs" class="meta-cta">
+                <i class="fas fa-arrow-down"></i>
+                <span>Ver gifs</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="main-content">
+
+    <!-- DESARROLLO -->
+    <section class="section accordion-section">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <h2 class="section-title">
+                <i class="fas fa-clipboard-list"></i>
+                Objetivos y Desarrollo
+            </h2>
+            <i class="fas fa-chevron-down accordion-icon"></i>
+        </div>
+
+        <div class="accordion-content">
+            <div class="section-content">
+                <p>
+                    En esta práctica final se realiza un análisis temporal del índice NDWI para detectar
+                    la evolución de masas de agua en diferentes regiones del mundo.
+                </p>
+
+                <ul>
+                    <li>Cálculo del índice NDWI.</li>
+                    <li>Análisis multitemporal en distintas zonas.</li>
+                    <li>Exportación de mapas interactivos.</li>
+                    <li>Generación de timelapses satelitales.</li>
+                </ul>
+
+                <div class="tech-info">
+                    <h4><i class="fas fa-info-circle"></i> Tecnologías empleadas</h4>
+                    <ul>
+                        <li>Google Earth Engine</li>
+                        <li>Python / Jupyter Notebook</li>
+                        <li>HTML interactivo y GIFs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="assets/resultados/NDWI_alumno.ipynb" class="btn btn-success" download>
+                    <i class="fas fa-download"></i>
+                    Descargar cuadernillo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section class="section" id="resultados">
+
+        <!-- NDWI MÉXICO -->
+        <h2 class="section-title">
+            <i class="fas fa-water"></i>
+            NDWI – México (Lago de Chapala)
+        </h2>
+
+        <div class="webmap-container">
+            <iframe src="assets/mapas/NDWI_Mexico.html" title="NDWI México"></iframe>
+        </div>
+
+        <div class="action-buttons">
+            <a href="assets/mapas/NDWI_Mexico.html" class="btn btn-primary" download>
+                <i class="fas fa-download"></i> Descargar NDWI México
+            </a>
+        </div>
+
+        <div class="section-separator"></div>
+
+        <!-- NDWI MONGOLIA -->
+        <h2 class="section-title">
+            <i class="fas fa-water"></i>
+            NDWI – Mongolia (Lago Uvs)
+        </h2>
+
+        <div class="webmap-container">
+            <iframe src="assets/mapas/NDWI_Mongolia.html" title="NDWI Mongolia"></iframe>
+        </div>
+
+        <div class="action-buttons">
+            <a href="assets/mapas/NDWI_Mongolia.html" class="btn btn-primary" download>
+                <i class="fas fa-download"></i> Descargar NDWI Mongolia
+            </a>
+        </div>
+
+        <div class="section-separator"></div>
+
+        <!-- TIMELAPSES -->
+        <h2 class="section-title" id="gifs">
+            <i class="fas fa-film"></i>
+            Timelapses Satelitales
+        </h2>
+
+        <h3>Landsat 9 (2024)</h3>
+        <div class="timelapse-container">
+            <img src="assets/images/Timelapse_Landsat9_2024.gif" alt="Timelapse Landsat 9">
+        </div>
+
+        <div class="action-buttons">
+            <a href="assets/images/Timelapse_Landsat9_2024.gif" class="btn btn-primary" download>
+                <i class="fas fa-download"></i> Descargar GIF Landsat
+            </a>
+        </div>
+
+        <h3>Sentinel-2 (2024)</h3>
+        <div class="timelapse-container">
+            <img src="assets/images/Timelapse_Sentinel2_2024.gif" alt="Timelapse Sentinel-2">
+        </div>
+
+        <div class="action-buttons">
+            <a href="assets/images/Timelapse_Sentinel2_2024.gif" class="btn btn-primary" download>
+                <i class="fas fa-download"></i> Descargar GIF Sentinel-2
+            </a>
+        </div>
+
+    </section>
+
+    <!-- NAVEGACIÓN -->
+    <div class="practice-navigation">
+        <a href="practica9.html" class="nav-practice">
+            <i class="fas fa-arrow-left"></i>
+            <div class="nav-practice-info">
+                <h5>Práctica Anterior</h5>
+                <p>Práctica 09 - Índices SAVI y EVI</p>
+            </div>
+        </a>
+
+        <a href="index.html" class="nav-practice">
+            <div class="nav-practice-info" style="text-align: right;">
+                <h5>Fin del Portafolio</h5>
+                <p>Volver al Inicio</p>
+            </div>
+            <i class="fas fa-check-circle"></i>
+        </a>
+    </div>
+
+</main>
+
+<!-- JS -->
+<script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    const dropdown = document.getElementById('dropdownPracticas');
+    const dropdownToggle = document.getElementById('dropdownToggle');
+
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    if (dropdown && dropdownToggle) {
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            }
+        });
+    }
+
+    function toggleAccordion(headerEl) {
+        const section = headerEl.closest('.accordion-section');
+        if (!section) return;
+        section.classList.toggle('active');
+    }
+</script>
+
 </body>
+
 </html>
